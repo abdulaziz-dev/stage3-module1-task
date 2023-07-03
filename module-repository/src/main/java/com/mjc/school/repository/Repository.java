@@ -3,11 +3,11 @@ package com.mjc.school.repository;
 import java.util.List;
 
 public interface Repository<T> {
-    List<T> getAll();
+    List<T> readAll();
 
-    T getById(Long id);
+    T readById(Long id);
 
-    T addNew(T model);
+    T create(T model);
 
     T update(T model);
 

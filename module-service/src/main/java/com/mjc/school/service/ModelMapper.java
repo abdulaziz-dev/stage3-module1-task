@@ -1,6 +1,6 @@
 package com.mjc.school.service;
 
-import com.mjc.school.repository.entity.News;
+import com.mjc.school.repository.entity.NewsModel;
 import com.mjc.school.service.dto.NewsRequestDTO;
 import com.mjc.school.service.dto.NewsResponseDTO;
 import org.mapstruct.Mapper;
@@ -11,11 +11,11 @@ import java.util.List;
 
 @Mapper
 public interface ModelMapper {
-    NewsResponseDTO modelToDto(News newsModel);
-    List<NewsResponseDTO> modelListToDtoList(List<News> modelList);
+    NewsResponseDTO modelToDto(NewsModel newsModel);
+    List<NewsResponseDTO> modelListToDtoList(List<NewsModel> modelList);
 
     @Mappings(value = {@Mapping(target = "createDate", ignore = true),
                         @Mapping(target = "lastUpdateDate", ignore = true)})
-    News DtoToModel(NewsRequestDTO requestDTO);
+    NewsModel DtoToModel(NewsRequestDTO requestDTO);
 
 }

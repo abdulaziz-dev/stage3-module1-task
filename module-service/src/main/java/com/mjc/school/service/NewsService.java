@@ -2,7 +2,7 @@ package com.mjc.school.service;
 
 import com.mjc.school.repository.Repository;
 import com.mjc.school.repository.RepositoryFactory;
-import com.mjc.school.repository.entity.News;
+import com.mjc.school.repository.entity.NewsModel;
 import com.mjc.school.service.dto.NewsRequestDTO;
 import com.mjc.school.service.dto.NewsResponseDTO;
 import com.mjc.school.service.exceptions.ErrorCodes;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class NewsService implements Service<NewsRequestDTO, NewsResponseDTO> {
-    private final Repository<News> newsRepository;
+    private final Repository<NewsModel> newsRepository;
     private final ModelMapper mapper = Mappers.getMapper(ModelMapper.class);
     private final NewsValidator validator = NewsValidator.getInstance();
 
@@ -23,32 +23,32 @@ public class NewsService implements Service<NewsRequestDTO, NewsResponseDTO> {
 
     @Override
     public List<NewsResponseDTO> getAll() {
-        return mapper.modelListToDtoList(newsRepository.getAll());
+        return mapper.modelListToDtoList(newsRepository.readAll());
     }
 
     @Override
     public NewsResponseDTO getById(Long id) {
         checkNewsExist(id);
-        News news = newsRepository.getById(id);
+        NewsModel news = newsRepository.readById(id);
         return mapper.modelToDto(news);
     }
 
     @Override
     public NewsResponseDTO addNew(NewsRequestDTO req) {
         validator.checkDTO(req);
-        News news = mapper.DtoToModel(req);
+        NewsModel news = mapper.DtoToModel(req);
         LocalDateTime now = LocalDateTime.now().withNano(0);
         news.setCreateDate(now);
         news.setLastUpdateDate(now);
-        return mapper.modelToDto(newsRepository.addNew(news));
+        return mapper.modelToDto(newsRepository.create(news));
     }
 
     @Override
     public NewsResponseDTO update(NewsRequestDTO req) {
         validator.checkDTO(req);
-        News news = mapper.DtoToModel(req);
+        NewsModel news = mapper.DtoToModel(req);
         news.setLastUpdateDate(LocalDateTime.now().withNano(0));
-        News updatedNews = newsRepository.update(news);
+        NewsModel updatedNews = newsRepository.update(news);
         return mapper.modelToDto(updatedNews);
     }
 

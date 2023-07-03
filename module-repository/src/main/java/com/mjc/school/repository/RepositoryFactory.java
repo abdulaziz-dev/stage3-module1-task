@@ -1,11 +1,11 @@
 package com.mjc.school.repository;
 
-import com.mjc.school.repository.entity.News;
+import com.mjc.school.repository.entity.NewsModel;
 import com.mjc.school.repository.implementation.NewsRepository;
 
 public class RepositoryFactory {
     private static final RepositoryFactory INSTANCE = new RepositoryFactory();
-    private final Repository<News> newsRepository = new NewsRepository();
+    private final Repository<NewsModel> newsRepository = new NewsRepository();
 
     private RepositoryFactory(){
     }
@@ -14,7 +14,7 @@ public class RepositoryFactory {
         return INSTANCE;
     }
 
-    public Repository<News> getNewsRepository() {
+    public Repository<NewsModel> getNewsRepository() {
         return newsRepository;
     }
 }

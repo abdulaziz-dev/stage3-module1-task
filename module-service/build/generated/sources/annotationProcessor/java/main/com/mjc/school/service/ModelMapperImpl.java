@@ -1,6 +1,6 @@
 package com.mjc.school.service;
 
-import com.mjc.school.repository.entity.News;
+import com.mjc.school.repository.entity.NewsModel;
 import com.mjc.school.service.dto.NewsRequestDTO;
 import com.mjc.school.service.dto.NewsResponseDTO;
 import java.time.LocalDateTime;
@@ -16,7 +16,7 @@ import javax.annotation.processing.Generated;
 public class ModelMapperImpl implements ModelMapper {
 
     @Override
-    public NewsResponseDTO modelToDto(News newsModel) {
+    public NewsResponseDTO modelToDto(NewsModel newsModel) {
         if ( newsModel == null ) {
             return null;
         }
@@ -41,13 +41,13 @@ public class ModelMapperImpl implements ModelMapper {
     }
 
     @Override
-    public List<NewsResponseDTO> modelListToDtoList(List<News> modelList) {
+    public List<NewsResponseDTO> modelListToDtoList(List<NewsModel> modelList) {
         if ( modelList == null ) {
             return null;
         }
 
         List<NewsResponseDTO> list = new ArrayList<NewsResponseDTO>( modelList.size() );
-        for ( News news : modelList ) {
+        for ( NewsModel news : modelList ) {
             list.add( modelToDto( news ) );
         }
 
@@ -55,7 +55,7 @@ public class ModelMapperImpl implements ModelMapper {
     }
 
     @Override
-    public News DtoToModel(NewsRequestDTO requestDTO) {
+    public NewsModel DtoToModel(NewsRequestDTO requestDTO) {
         if ( requestDTO == null ) {
             return null;
         }
@@ -73,7 +73,7 @@ public class ModelMapperImpl implements ModelMapper {
         LocalDateTime createDate = null;
         LocalDateTime lastUpdateDate = null;
 
-        News news = new News( id, title, content, createDate, lastUpdateDate, authorId );
+        NewsModel news = new NewsModel( id, title, content, createDate, lastUpdateDate, authorId );
 
         return news;
     }

@@ -2,8 +2,8 @@ package com.mjc.school.repository.entity;
 
 import java.time.LocalDateTime;
 
-public class News {
-    public News(Long id, String title, String content, LocalDateTime createDate, LocalDateTime lastUpdateDate, Long authorId) {
+public class NewsModel {
+    public NewsModel(Long id, String title, String content, LocalDateTime createDate, LocalDateTime lastUpdateDate, Long authorId) {
         this.id = id;
         this.title = title;
         this.content = content;

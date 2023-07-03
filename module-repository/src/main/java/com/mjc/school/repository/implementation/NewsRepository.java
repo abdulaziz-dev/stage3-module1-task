@@ -1,40 +1,40 @@
 package com.mjc.school.repository.implementation;
 
 import com.mjc.school.repository.Repository;
-import com.mjc.school.repository.data.NewsDatasource;
-import com.mjc.school.repository.entity.News;
+import com.mjc.school.repository.data.NewsDataSource;
+import com.mjc.school.repository.entity.NewsModel;
 
 import java.util.List;
 
-public class NewsRepository implements Repository<News> {
+public class NewsRepository implements Repository<NewsModel> {
 
-    private List<News> newsData;
+    private List<NewsModel> newsData;
 
     public NewsRepository(){
-        this.newsData = NewsDatasource.getInstance().getNewsList();
+        this.newsData = NewsDataSource.getInstance().getNewsList();
     }
     @Override
-    public List<News> getAll() {
+    public List<NewsModel> readAll() {
         return newsData;
     }
 
     @Override
-    public News getById(Long id) {
+    public NewsModel readById(Long id) {
         return newsData.stream().filter(x -> x.getId().equals(id))
                 .findFirst().orElse(null);
     }
 
     @Override
-    public News addNew(News model) {
-        long maxId = newsData.stream().mapToLong(News::getId).max().orElse(0);
+    public NewsModel create(NewsModel model) {
+        long maxId = newsData.stream().mapToLong(NewsModel::getId).max().orElse(0);
         model.setId(maxId + 1);
         newsData.add(model);
         return model;
     }
 
     @Override
-    public News update(News model) {
-        News newsModel = getById(model.getId());
+    public NewsModel update(NewsModel model) {
+        NewsModel newsModel = readById(model.getId());
         newsModel.setTitle(model.getTitle());
         newsModel.setContent(model.getContent());
         newsModel.setLastUpdateDate(model.getLastUpdateDate());
