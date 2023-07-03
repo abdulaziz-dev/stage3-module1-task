@@ -1,6 +1,7 @@
 package com.mjc.school.repository;
 
 import com.mjc.school.repository.entity.News;
+import com.mjc.school.repository.implementation.NewsRepository;
 
 public class RepositoryFactory {
     private static final RepositoryFactory INSTANCE = new RepositoryFactory();

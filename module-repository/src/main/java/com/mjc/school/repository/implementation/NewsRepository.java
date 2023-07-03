@@ -1,11 +1,12 @@
-package com.mjc.school.repository;
+package com.mjc.school.repository.implementation;
 
+import com.mjc.school.repository.Repository;
 import com.mjc.school.repository.data.NewsDatasource;
 import com.mjc.school.repository.entity.News;
 
 import java.util.List;
 
-public class NewsRepository implements Repository<News>{
+public class NewsRepository implements Repository<News> {
 
     private List<News> newsData;
 
